@@ -1,0 +1,3 @@
+export MapboxAccessToken=pk.eyJ1Ijoic29uZ3lhbmhvIiwiYSI6ImNqanplY3cybzA3N3YzcHBvMTc1aDdpZ3cifQ.7nnGaa_doaPn_N9NtOCwUw
+export ExternalDatabaseApiEndpoint=http://localhost:5001/query
+yarn deploy

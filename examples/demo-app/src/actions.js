@@ -114,11 +114,14 @@ export function loadRemoteMap(options) {
     loadRemoteRawData(options.dataUrl).then(
       // In this part we turn the response into a FileBlob
       // so we can use it to call loadFiles
-      file => dispatch(loadFiles([
-        /* eslint-disable no-undef */
-        new File([file], options.dataUrl)
-        /* eslint-enable no-undef */
-      ])),
+      file => {
+        dispatch(loadFiles([
+          /* eslint-disable no-undef */
+          new File([file], options.dataUrl)
+          /* eslint-enable no-undef */
+        ]))
+        dispatch(setLoadingMapStatus(false));
+      },
       error => {
         const {target = {}} = error;
         const {status, responseText} = target;
@@ -127,6 +130,54 @@ export function loadRemoteMap(options) {
     );
     dispatch(setLoadingMapStatus(true));
   }
+}
+
+export function loadDatabaseData(options) {
+  console.log("loadDatabaseData", options)
+  return dispatch => {
+    loadDatabaseQuery(options.url, options.query).then(
+      // In this part we turn the response into a FileBlob
+      // so we can use it to call loadFiles
+      file => {
+        dispatch(loadFiles([
+          /* eslint-disable no-undef */
+          new File([file], options.query + ".csv", {type: 'text/csv', lastModified: new Date()})
+          /* eslint-enable no-undef */
+        ]))
+        dispatch(setLoadingMapStatus(false));
+      },
+      error => {
+        console.error(error)
+        const {target = {}} = error;
+        const {status, responseText} = target;
+        dispatch(loadRemoteResourceError({status, message: responseText}, options.query));
+      }
+    );
+    dispatch(setLoadingMapStatus(true));
+  }
+}
+
+function loadDatabaseQuery(url, query) {
+  if (!query || !url) {
+    return Promise.resolve(null)
+  }
+  return new Promise((resolve, reject) => {
+    var data = new URLSearchParams();
+    data.append("q", query)
+    request(url)
+    .header('Content-Type', 'application/x-www-form-urlencoded')
+    .post(data, (error, result) => {
+      if (error) {
+        reject(error);
+      }
+      const responseError = detectResponseError(result);
+      if (responseError) {
+        reject(responseError);
+        return;
+      }
+      resolve(result.response)
+    })
+  });
 }
 
 /**

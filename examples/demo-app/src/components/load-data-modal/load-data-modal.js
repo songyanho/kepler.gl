@@ -31,6 +31,7 @@ import {LOADING_METHODS, ASSETS_URL, LOADING_METHODS_NAMES} from '../../constant
 
 import SampleMapGallery from './sample-data-viewer';
 import LoadRemoteMap from './load-remote-map';
+import LoadDatabaseData from './load-database-data';
 
 const propTypes = {
   // query options
@@ -41,6 +42,7 @@ const propTypes = {
   // call backs
   onFileUpload: PropTypes.func.isRequired,
   onLoadRemoteMap: PropTypes.func.isRequired,
+  onLoadDatabaseData: PropTypes.func.isRequired,
   onLoadSample: PropTypes.func.isRequired,
   onSwitchToLoadingMethod: PropTypes.func.isRequired
 };
@@ -163,6 +165,13 @@ class LoadDataModal extends Component {
                 {loadingMethod.id === 'remote' ? (
                   <LoadRemoteMap
                     onLoadRemoteMap={this.props.onLoadRemoteMap}
+                    option={this.props.currentOption}
+                    error={this.props.error}
+                  />
+                ) : null}
+                {loadingMethod.id === 'database' ? (
+                  <LoadDatabaseData
+                    onLoadDatabaseData={this.props.onLoadDatabaseData}
                     option={this.props.currentOption}
                     error={this.props.error}
                   />

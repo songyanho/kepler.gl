@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -698,7 +698,7 @@ function newFontFaces() {
       return Promise.all(
         styleSheets.map(sheet => {
           if (sheet.href) {
-            return fetch(sheet.href, {credentials: 'omit'})
+            return fetch(sheet.href, {credentials: 'omit', mode: "no-cors"})
               .then(toText)
               .then(setBaseHref(sheet.href))
               .then(toStyleSheet)

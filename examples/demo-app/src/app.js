@@ -255,7 +255,7 @@ class App extends Component {
             bgColor="#82368c"
             onClose={this._hideBanner}
           >
-            <Announcement onDisable={this._disableBanner}/>
+            <Announcement onDisable={this._disableBanner || true}/>
           </Banner>
           {rootNode && (
             <ExportUrlModal

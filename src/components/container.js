@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -79,8 +79,8 @@ export function ContainerFactory(KeplerGl) {
 
     componentWillReceiveProps(nextProps) {
       // check if id has changed, if true, copy state over
-      if (nextProps.id !== this.props.id) {
-        this.props.dispatch(renameEntry(this.props.id, nextProps));
+      if (nextProps.id && nextProps.id !== this.props.id) {
+        this.props.dispatch(renameEntry(this.props.id, nextProps.id));
       }
     }
 

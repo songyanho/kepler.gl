@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -61,7 +61,7 @@ function LayerGroupSelectorFactory() {
         <PanelLabel>Map Layers</PanelLabel>
       </div>
       <PanelContent className="map-style__layer-group">
-        {Object.keys(editableLayers).map(slug => (
+        {editableLayers.map(slug => (
           <StyledLayerGroupItem className="layer-group__select" key={slug}>
             <PanelLabelWrapper>
               <PanelHeaderAction

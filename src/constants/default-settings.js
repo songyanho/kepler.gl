@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import {
 
 export const KEPLER_GL_NAME = 'kepler.gl';
 export const KEPLER_GL_VERSION = 'v1.0';
-export const KEPLER_GL_WEBSITE = 'http://kepler.gl/#/';
+export const KEPLER_GL_WEBSITE = 'http://kepler.gl/';
 
 export const DIMENSIONS = {
   sidePanel: {
@@ -120,6 +120,11 @@ export const DEFAULT_LAYER_GROUPS = [
     slug: 'land',
     filter: ({id}) => id.match(/(?=(parks|landcover|industrial|sand|hillshade))/),
     defaultVisibility: true
+  },
+  {
+    slug: '3d building',
+    filter: () => false,
+    defaultVisibility: false
   }
 ];
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -93,6 +93,10 @@ export function getLatLngBounds(points, idx, limit) {
     Math.min(lats[Math.ceil(0.99 * (lats.length - 1))], limit[1])
   ];
 }
+
+export function clamp([min, max], val) {
+  return val <= min ? min : val >= max ? max : val;
+};
 
 export function getSampleData(data, sampleSize = 500) {
   const sampleStep = Math.max(Math.floor(data.length / sampleSize), 1);

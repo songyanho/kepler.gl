@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -361,6 +361,9 @@ export default function ModalContainerFactory(
               }
             };
             break;
+
+          // TODO: add this options once we merge dropbox onto kepelr.gl core
+          // case SAVE_TO_CLOUD_ID
           default:
             break;
         }

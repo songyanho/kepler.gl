@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -74,7 +74,7 @@ function makeLocalDevConfig(EXAMPLE_DIR = LIB_DIR) {
     },
     // Optional: Enables reading mapbox token from environment variable
     plugins: [
-      new webpack.EnvironmentPlugin(['MapboxAccessToken'])
+      new webpack.EnvironmentPlugin(['MapboxAccessToken', 'DropboxClientId'])
     ]
   };
 }

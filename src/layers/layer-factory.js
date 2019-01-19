@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -215,8 +215,8 @@ export const LAYER_VIS_CONFIGS = {
     defaultValue: 1,
     label: 'World Unit Size',
     isRanged: false,
-    range: [0.01, 500],
-    step: 0.01,
+    range: [0, 500],
+    step: 0.0001,
     group: PROPERTY_GROUPS.cell,
     property: 'worldUnitSize'
   },

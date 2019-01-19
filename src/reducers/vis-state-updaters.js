@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -787,7 +787,7 @@ function generateLayerMetaForSplitViews(layer) {
 }
 
 /**
- * This emthod will compute the default maps custom list
+ * This method will compute the default maps custom list
  * based on the current layers status
  * @param layers
  * @returns {[*,*]}
@@ -811,7 +811,7 @@ function computeSplitMapLayers(layers) {
 }
 
 /**
- * Remove an existing layers from custom map layer objects
+ * Remove an existing layer from custom map layer objects
  * @param state
  * @param layer
  * @returns {[*,*]} Maps of custom layer objects

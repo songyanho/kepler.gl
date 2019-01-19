@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ import {transformRequest} from 'utils/map-style-utils/mapbox-utils';
 
 // default-settings
 import {LAYER_BLENDINGS} from 'constants/default-settings';
+import ThreeDBuildingLayer from '../deckgl-layers/3d-building-layer/3d-building-layer';
 
 const MAP_STYLE = {
   container: {
@@ -54,6 +55,8 @@ const MAP_STYLE = {
 const getGlConst = d => GL[d];
 
 const MAPBOXGL_STYLE_UPDATE = 'style.load';
+const TRANSITION_DURATION = 0;
+
 MapContainerFactory.deps = [
   MapPopoverFactory, MapControlFactory
 ];
@@ -322,6 +325,7 @@ export default function MapContainerFactory(MapPopover, MapControl) {
     _renderOverlay() {
       const {
         mapState,
+        mapStyle,
         layerData,
         layerOrder,
         visStateActions
@@ -336,6 +340,10 @@ export default function MapContainerFactory(MapPopover, MapControl) {
           .slice()
           .reverse()
           .reduce(this._renderLayer, []);
+      }
+      const threeDBuildingLayerId = '_keplergl_3d-building';
+      if (mapStyle.visibleLayerGroups['3d building']) {
+        deckGlLayers.push(new ThreeDBuildingLayer({id: threeDBuildingLayerId, threeDBuildingColor: mapStyle.threeDBuildingColor}));
       }
 
       return (
@@ -426,6 +434,7 @@ export default function MapContainerFactory(MapPopover, MapControl) {
             mapStyle={mapStyle.bottomMapStyle}
             onClick={onMapClick}
             getCursor={this.props.hoverInfo ? () => 'pointer' : undefined}
+            transitionDuration={TRANSITION_DURATION}
           >
             {this._renderOverlay()}
             {this._renderMapboxOverlays()}

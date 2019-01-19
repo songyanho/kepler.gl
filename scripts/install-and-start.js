@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ const folder = process.argv[2];
 const script = process.argv[3];
 
 const cmd = !existsSync(`${folder}/node_modules`)
-  ? `npm i && npm run ${script}`
+  ? `yarn --ignore-engines && npm run ${script}`
   : `npm run ${script}`;
 
 execSync(cmd, {

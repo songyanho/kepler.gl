@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,7 @@ const EXCLUDED_ACTIONS = [ActionTypes.LAYER_HOVER, ActionTypes.UPDATE_MAP];
 
 const analyticsMiddleware = store => next => action => {
   if (window.gtag && !EXCLUDED_ACTIONS.includes(action.type)) {
-    const payload = action.paylod || action;
+    const payload = action.payload || action;
     // eslint-disable-next-line no-undef
     window.gtag('event', 'action', {
       event_category: action.type,

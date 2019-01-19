@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Uber Technologies, Inc.
+// Copyright (c) 2019 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -87,9 +87,14 @@ const COMMON_CONFIG = {
     fs: 'empty'
   },
 
+  // to support browser history api and remove the '#' sign
+  devServer: {
+    historyApiFallback: true
+  },
+
   // Optional: Enables reading mapbox token from environment variable
   plugins: [
-    new webpack.EnvironmentPlugin(['MapboxAccessToken'])
+    new webpack.EnvironmentPlugin(['MapboxAccessToken', 'DropboxClientId'])
   ]
 };
 
@@ -142,7 +147,7 @@ module.exports = env => {
     if (!process.env.MapboxAccessToken) {
       logError('Error! MapboxAccessToken is not defined');
       logInstruction(`Make sure to run "export MapboxAccessToken=<token>" before deploy the website`);
-      logInstruction('You can get the token at http://t.uber.com/kepler.gl-token');
+      logInstruction('You can get the token at https://www.mapbox.com/help/how-access-tokens-work/');
       throw new Error('Missing Mapbox Access token');
     }
     config = addProdConfig(config);
